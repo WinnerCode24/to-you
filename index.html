@@ -347,7 +347,6 @@
       transform-style: preserve-3d;
       animation: rotating 16s linear infinite;
     }
-    .inner.paused { animation-play-state: paused; }
 
     @keyframes rotating {
       from { transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(0); }
@@ -548,15 +547,6 @@
   modalBox.addEventListener('touchend',   e => {
     if (e.changedTouches[0].clientY - startY > 90) modal.classList.remove('open');
   }, { passive: true });
-
-  /* hold to pause carousel */
-  carousel.addEventListener('touchstart', () => carousel.classList.add('paused'),    { passive: true });
-  carousel.addEventListener('touchend',   () => carousel.classList.remove('paused'), { passive: true });
-  carousel.addEventListener('touchcancel',() => carousel.classList.remove('paused'), { passive: true });
-
-  /* desktop hover pause */
-  modalBox.addEventListener('mouseenter', () => carousel.classList.add('paused'));
-  modalBox.addEventListener('mouseleave', () => carousel.classList.remove('paused'));
 
   /* image upload — tap on .img triggers file input */
   document.querySelectorAll('.img[data-target]').forEach(imgDiv => {
